@@ -6,24 +6,25 @@
 //
 
 import UIKit
+import WebKit
 
 class SecondViewController: UIViewController {
+  
+  var sharedWebView: WKWebView {
+    (UIApplication.shared.delegate as! AppDelegate).webView
+  }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    debugPrint("\(#function)")
+    sharedWebView.frame = view.bounds
+    sharedWebView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+    view.addSubview(sharedWebView)
+  }
+  
+  
+  
 }
